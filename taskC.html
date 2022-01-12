@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Lab 3 Task C by (K18SW06)</title>
+  <style media="screen">
+    * {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    .quadratic-eq {
+      color: white;
+      background-color: green;
+      margin-top: 100px;
+      margin-bottom: 20px;
+    }
+
+    .quadratic-eq td {
+      height: 70px;
+      padding: 0 20px;
+      box-shadow: 0 1px 0 rgb(255, 0, 0);
+      text-align: center;
+      vertical-align: middle;
+      display: table-cell;
+    }
+
+    .button {
+      margin-top: 15px;
+      color: white;
+      background-color: blue;
+    }
+
+    #count {
+      color: white;
+      margin-left: 09px;
+      background-color: blue;
+    }
+  </style>
+
+  <script type="text/javascript">
+    function calculateFunction() {
+      var a = document.getElementById('valueofa').value;
+      var b = document.getElementById('valueofb').value;
+      var c = document.getElementById('valueofc').value;
+      console.log(`a:${a} b:${b} c:${c}`)
+      var discr = (b * b) - 4 * (a * c);
+      var sqrDiscr = Math.sqrt(discr);
+      if (a == 0 && b == 0 && c == 0) {
+        document.getElementById('output').innerHTML = "Please enter the a,b and c values";
+      } else if (discr < 0) {
+        document.getElementById('output').innerHTML = "This equation has imaginary roots";
+      } else if (discr == 0) {
+        let root1 = (-b) / 2 * a
+        document.getElementById('output').innerHTML = `This equation can have one root:{${root1}}`;
+      } else if (discr > 0) {
+        let root1 = ((-b) + sqrDiscr) / 2 * a;
+        let root2 = ((-b) - sqrDiscr) / 2 * a;
+        document.getElementById('output').innerHTML = `This equation can have two roots:
+   {${root1},${root2}}`;
+      }
+    }
+
+    function cancel() {
+      document.getElementById('valueofa').value = null;
+      document.getElementById('valueofb').value = null;
+      document.getElementById('valueofc').value = null;
+      document.getElementById('output').innerHTML = "&nbsp";
+    }
+  </script>
+</head>
+
+<body>
+  <form>
+    <table class="quadratic-eq" border="9" cellspacing="8" align="center">
+      <tr>
+        <td>
+          <p>The usual form of quadratic equation is</p>
+          <p>ax<sup><small>2</small></sup> + bx + c = 0</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="valueofa" type="text" size="2"></input>
+          <a><big>x</big><sup><small>2</small></sup></a> + <input id="valueofb" type="text" size="2"></input> <a><big>x</big></a> + <input id="valueofc" type="text" size="2" value=""></input> = <a>0</a>
+          <input id="count" type="button" value="Reset" onclick="cancel()"></input>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Enter the values of a,b and c and press the calculate button</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="button" value="calculate" onclick="calculateFunction()" class="button"></input>
+          <p id="output">&nbsp</p>
+        </td>
+      </tr>
+    </table>
+  </form>
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Lab 2 Task D</title>
+  <meta charset="utf-8" />
+</head>
+
+<body>
+  <canvas height="600" width="600" id="face">
+    <p>You need canvas!</p>
+  </canvas>
+
+  <script>
+    var canvas = null;
+    var context = null;
+    var c_width;
+    var c_height;
+
+    initFace();
+
+    function initFace() {
+      canvas = document.getElementById("face");
+      context = canvas.getContext("2d");
+
+      c_width = canvas.offsetWidth;
+      c_height = canvas.offsetHeight;
+
+      drawSmileyFace();
+    }
+
+    function drawSmileyFace() {
+      drawFace();
+      drawLeftEye();
+      drawRightEye();
+      drawSmile();
+    }
+
+    function drawFace() {
+      context.beginPath();
+      context.arc(c_width / 2, c_height / 2, 200, 0, degreesToRadians(360), true);
+      context.fillStyle = "#FFFF00";
+      context.fill();
+      context.stroke();
+    }
+
+    function drawLeftEye(dx, dy) {
+      x = 200;
+      y = 250;
+
+      dx = dx || 0;
+      x1 = x + parseFloat(dx);
+
+      dy = dy || 0;
+      y1 = y + parseFloat(dy);
+
+      context.beginPath();
+      context.arc(x, y, 25, 0, degreesToRadians(360), true);
+      context.fillStyle = "#FFFFFF";
+      context.fill();
+      context.strokeStyle = '#000000';
+      context.stroke();
+      //inner left eye
+      context.beginPath();
+      context.arc(x1, y1, 20, 0, degreesToRadians(360), true);
+      context.fillStyle = "#04B4AE";
+      context.fill();
+      context.strokeStyle = '#04B4AE';
+      context.stroke();
+    }
+
+    function drawRightEye(dx, dy) {
+      x = 400;
+      y = 250;
+
+      dx = dx || 0;
+      x1 = x + parseFloat(dx);
+
+      dy = dy || 0;
+      y1 = y + parseFloat(dy);
+
+      context.beginPath();
+      context.arc(x, y, 25, 0, degreesToRadians(360), true);
+      context.fillStyle = "#FFFFFF";
+      context.fill();
+      context.strokeStyle = '#000000';
+      context.stroke();
+      //inner right eye
+      context.beginPath();
+      context.arc(x1, y1, 20, 0, degreesToRadians(360), true);
+      context.fillStyle = "#04B4AE";
+      context.fill();
+      context.strokeStyle = '#04B4AE';
+      context.stroke();
+    }
+
+    function drawSmile() {
+      context.beginPath();
+      context.arc(300, 350, 75, degreesToRadians(0), degreesToRadians(180), false);
+      context.stroke();
+    }
+
+    function degreesToRadians(degrees) {
+      radians = (degrees * Math.PI) / 180;
+      return radians;
+    }
+  </script>
+
+</body>
+
+</html>
